@@ -47,13 +47,15 @@
     </tr>
   </thead>
   <tbody>
+    @for (item of persons; track item){
     <tr>
-      <td>Abhijit Kumar</td>
-      <td>Mahato</td>
-      <td>27 th April</td>
-      <td>Engineer</td>
-      <td>Edit, Delete</td>
+      <td>{{item.firstName}}</td>
+      <td>{{item.lastName}}</td>
+      <td>{{item.dob}}</td>
+      <td>{{item.qualification}}</td>
+      <td>Edit, Delete</td> 
     </tr>
+    }
   </tbody>
 </table>
 </div>

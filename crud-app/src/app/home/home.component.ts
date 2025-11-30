@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UserForm } from '../model/UserForm';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class HomeComponent {
   userForm: FormGroup;
+  persons: UserForm[] = [];
   constructor(private fb: FormBuilder){
     this.userForm = this.fb.group({
       firstName: [''],
@@ -20,7 +22,11 @@ export class HomeComponent {
   }
 
   submitFrom(){
-    console.log(this.userForm.value);
+    const value = this.userForm.value;
+    console.log(value);
+    this.persons.push(value);
+    this.userForm.reset();
+    console.log(this.persons);
   }
 
 }

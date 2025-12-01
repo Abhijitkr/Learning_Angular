@@ -29,7 +29,7 @@
     </div>
 
     <div class="col-12">
-      <button type="submit" class="btn btn-primary" (click)="submitFrom()">Add</button>
+      <button type="submit" class="btn btn-primary" (click)="submitFrom()" [disabled]="userForm.invalid">Add</button>
     </div>
   </form>
 
@@ -53,67 +53,74 @@
         <td>{{item.lastName}}</td>
         <td>{{item.dob}}</td>
         <td>{{item.qualification}}</td>
-        <td><button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" (click)="selectForEdit(i)">
+        <!-- <td><button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" (click)="selectForEdit(i)">
             Edit
           </button>
           <button class="btn btn-sm btn-danger ms-2" (click)="delete(i)">Delete</button>
+        </td> -->
+        <td>
+          <button class="btn btn-sm btn-outline-primary" title="Edit" aria-label="Edit" data-bs-toggle="modal"
+            data-bs-target="#editModal" (click)="selectForEdit(i)">
+            <i class="bi bi-pencil"></i>
+          </button>
+
+          <button class="btn btn-sm btn-outline-danger ms-2" title="Delete" aria-label="Delete" (click)="delete(i)">
+            <i class="bi bi-trash"></i>
+          </button>
         </td>
       </tr>
       }
-     
+
     </tbody>
-    
+
   </table>
 
   <!-- Bootstrap edit modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <form [formGroup]="editForm">
-            <div class="modal-header">
-              <h5 class="modal-title">Edit person</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="editForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit person</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">First Name</label>
+              <input formControlName="firstName" class="form-control" />
             </div>
 
-            <div class="modal-body">
-              <div class="mb-3">
-                <label class="form-label">First Name</label>
-                <input formControlName="firstName" class="form-control" />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Last Name</label>
-                <input formControlName="lastName" class="form-control" />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Date of Birth</label>
-                <input type="date" formControlName="dob" class="form-control" />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Qualification</label>
-                <select formControlName="qualification" class="form-select">
-                  <option value="">Choose...</option>
-                  <option>High School</option>
-                  <option>Bachelor</option>
-                  <option>Master</option>
-                  <option>PhD</option>
-                </select>
-              </div>
+            <div class="mb-3">
+              <label class="form-label">Last Name</label>
+              <input formControlName="lastName" class="form-control" />
             </div>
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <!-- data-bs-dismiss ensures modal closes after save -->
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveEdit()">Save changes</button>
+            <div class="mb-3">
+              <label class="form-label">Date of Birth</label>
+              <input type="date" formControlName="dob" class="form-control" />
             </div>
-          </form>
-        </div>
+
+            <div class="mb-3">
+              <label class="form-label">Qualification</label>
+              <select formControlName="qualification" class="form-select">
+                <option value="">Choose...</option>
+                <option>High School</option>
+                <option>Bachelor</option>
+                <option>Master</option>
+                <option>PhD</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveEdit()">Save
+              changes</button>
+          </div>
+        </form>
       </div>
-    </div> 
+    </div>
+  </div>
 
 </div>
-
-
-

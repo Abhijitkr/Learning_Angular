@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserForm } from '../model/UserForm';
 
 @Component({
@@ -17,10 +17,10 @@ export class HomeComponent {
   constructor(private fb: FormBuilder){
 
     this.userForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      dob: [''],
-      qualification: ['']
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      dob: ['', Validators.required],
+      qualification: ['', Validators.required]
     });
 
      this.editForm = this.fb.group({
